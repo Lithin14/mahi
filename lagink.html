@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Form</title>
+<style>
+  .error {
+    color: red;
+  }
+</style>
+</head>
+<body>
+
+<h2>Login Form</h2>
+<form id="loginForm">
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username">
+    <span id="usernameError" class="error"></span>
+  </div>
+  <div>
+    <label for="mobile">Mobile Number:</label>
+    <input type="text" id="mobile" name="mobile">
+    <span id="mobileError" class="error"></span>
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email">
+    <span id="emailError" class="error"></span>
+  </div>
+  <div>
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob">
+    <span id="dobError" class="error"></span>
+  </div>
+  <div>
+    <button type="button" onclick="validateForm()">Submit</button>
+  </div>
+</form>
+
+<script>
+  function validateForm() {
+    var username = document.getElementById('username').value;
+    var mobile = document.getElementById('mobile').value;
+    var email = document.getElementById('email').value;
+    var dob = document.getElementById('dob').value;
+
+    var usernameError = document.getElementById('usernameError');
+    var mobileError = document.getElementById('mobileError');
+    var emailError = document.getElementById('emailError');
+    var dobError = document.getElementById('dobError');
+
+    var isValid = true;
+
+    // Validate username
+    if (username === "") {
+      usernameError.textContent = "Username is required";
+      isValid = false;
+    } else {
+      usernameError.textContent = "";
+    }
+
+    // Validate mobile number
+    if (mobile === "" || isNaN(mobile) || mobile.length !== 10) {
+      mobileError.textContent = "Enter a valid 10-digit mobile number";
+      isValid = false;
+    } else {
+      mobileError.textContent = "";
+    }
+
+    // Validate email
+    if (email === "" || !email.includes("@")) {
+      emailError.textContent = "Enter a valid email address";
+      isValid = false;
+    } else {
+      emailError.textContent = "";
+    }
+
+    // Validate date of birth
+    if (dob === "") {
+      dobError.textContent = "Date of Birth is required";
+      isValid = false;
+    } else {
+      dobError.textContent = "";
+    }
+
+    // If form is valid, submit it
+    if (isValid) {
+      alert("Form submitted successfully!");
+      document.getElementById("loginForm").reset();
+    }
+  }
+</script>
+
+</body>
+</html>
